@@ -1,0 +1,317 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Lab02"/>
+        <attribute name="authors" value="Paula"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-10 01:15:08 PM"/>
+        <attribute name="created" value="UGF1bGE7TEFQVE9QLUlNUVBSQUJVOzIwMjQtMTAtMDk7MDg6MjM6MjAgQU07Mjg3OQ=="/>
+        <attribute name="edited" value="UGF1bGE7TEFQVE9QLUlNUVBSQUJVOzIwMjQtMTAtMTA7MDc6MjE6NTUgQU07Mzc7MzA0MQ=="/>
+        <attribute name="edited" value="YnJ1bm9tbnNpbHZhO0RBUlRILVZBREVSLUZFRDsyMDI0LTEwLTEwOzAxOjE1OjA4IFBNOzk7MzczNQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <call expression="CreatePassword()"/>
+        </body>
+    </function>
+    <function name="ConvertSeconds" type="String" variable="time">
+        <parameters>
+            <parameter name="seconds" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="hours, minutes, rest" type="Integer" array="False" size=""/>
+            <declare name="time" type="String" array="False" size=""/>
+            <assign variable="hours" expression="seconds / 3600"/>
+            <assign variable="rest" expression="seconds % 3600"/>
+            <assign variable="minutes" expression="rest / 60"/>
+            <assign variable="seconds" expression="rest % 60"/>
+            <assign variable="time" expression="hours &amp; &quot;:&quot; &amp; minutes &amp; &quot;:&quot; &amp; seconds"/>
+        </body>
+    </function>
+    <function name="CreatePassword" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="password" type="String" array="False" size=""/>
+            <output expression="&quot;Criar uma password com 5 caracteres. Considere as seguintes regras: &quot;" newline="True"/>
+            <call expression="PrintRules()"/>
+            <output expression="&quot;Password?: &quot;" newline="True"/>
+            <input variable="password"/>
+            <if expression="HasLength(password, 5)">
+                <then>
+                    <if expression="IsFirstDigit(password)">
+                        <then>
+                            <if expression="HasSpecialChar(password)">
+                                <then>
+                                    <output expression="&quot;Password v&#225;lida!&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;N&#227;o possui um caractere especial.&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <output expression="&quot;O primeiro caractere n&#227;o &#233; um d&#237;gito.&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;Tamanho incorreto.&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="DaysWeek" type="String" variable="result">
+        <parameters>
+            <parameter name="day" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="result" type="String" array="False" size=""/>
+            <assign variable="result" expression="&quot;(Dia inv&#225;lido)&quot;"/>
+            <if expression="day==1">
+                <then>
+                    <assign variable="result" expression="&quot;Domingo&quot;"/>
+                </then>
+                <else>
+                    <if expression="day==2">
+                        <then>
+                            <assign variable="result" expression="&quot;2&#170; feira&quot;"/>
+                        </then>
+                        <else>
+                            <if expression="day==3">
+                                <then>
+                                    <assign variable="result" expression="&quot;3&#170; feira&quot;"/>
+                                </then>
+                                <else>
+                                    <if expression="day==4">
+                                        <then>
+                                            <assign variable="result" expression="&quot;4&#170; feira&quot;"/>
+                                        </then>
+                                        <else>
+                                            <if expression="day==5">
+                                                <then>
+                                                    <assign variable="result" expression="&quot;5&#170; feira&quot;"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="day==6">
+                                                        <then>
+                                                            <assign variable="result" expression="&quot;6&#170; feira&quot;"/>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="day==7">
+                                                                <then>
+                                                                    <assign variable="result" expression="&quot;S&#225;bado&quot;"/>
+                                                                </then>
+                                                                <else/>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="DaysWeek2" type="String" variable="name">
+        <parameters>
+            <parameter name="day" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="name" type="String" array="False" size=""/>
+            <declare name="nameDays" type="String" array="True" size="7"/>
+            <assign variable="nameDays[0]" expression="&quot;Domingo&quot;"/>
+            <assign variable="nameDays[1]" expression="&quot;2&#170; feira&quot;"/>
+            <assign variable="nameDays[2]" expression="&quot;3&#170; feira&quot;"/>
+            <assign variable="nameDays[3]" expression="&quot;4&#170; feira&quot;"/>
+            <assign variable="nameDays[4]" expression="&quot;5&#170; feira&quot;"/>
+            <assign variable="nameDays[5]" expression="&quot;6&#170; feira&quot;"/>
+            <assign variable="nameDays[6]" expression="&quot;S&#225;bado&quot;"/>
+            <if expression="day &lt; 1 || day &gt; 7">
+                <then>
+                    <assign variable="name" expression="&quot;(Dia inv&#225;lido)&quot;"/>
+                </then>
+                <else>
+                    <assign variable="name" expression="nameDays[day-1]"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="EvenRange" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="upperLimit, lowerLimit, sum" type="Integer" array="False" size=""/>
+            <assign variable="sum" expression="0"/>
+            <output expression="&quot;Limite inferior do intervalo: &quot;" newline="True"/>
+            <input variable="lowerLimit"/>
+            <output expression="&quot;Limite superior do intervalo: &quot;" newline="True"/>
+            <input variable="upperLimit"/>
+            <if expression="lowerLimit%2 ==0">
+                <then>
+                    <assign variable="lowerLimit" expression="lowerLimit+2"/>
+                </then>
+                <else>
+                    <assign variable="lowerLimit" expression="lowerLimit+1"/>
+                </else>
+            </if>
+            <if expression="upperLimit%2 ==0">
+                <then>
+                    <assign variable="upperLimit" expression="upperLimit - 2"/>
+                </then>
+                <else>
+                    <assign variable="upperLimit" expression="upperLimit - 1"/>
+                </else>
+            </if>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="lowerLimit" end="upperLimit" direction="inc" step="2">
+                <assign variable="sum" expression="sum+i"/>
+                <output expression="i&amp; &quot; &quot;" newline="True"/>
+            </for>
+            <output expression="&quot;Soma = &quot;&amp;sum" newline="True"/>
+        </body>
+    </function>
+    <function name="IsFirstDigit" type="Boolean" variable="valid">
+        <parameters>
+            <parameter name="pwd" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="valid" type="Boolean" array="False" size=""/>
+            <assign variable="valid" expression="false"/>
+            <if expression="Char(pwd, 0) &gt;= &quot;0&quot; &amp;&amp; Char(pwd, 0) &lt;= &quot;9&quot;">
+                <then>
+                    <assign variable="valid" expression="true"/>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+    <function name="HasLength" type="Boolean" variable="valid">
+        <parameters>
+            <parameter name="pwd" type="String" array="False"/>
+            <parameter name="requiredLen" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="valid" type="Boolean" array="False" size=""/>
+            <if expression="Len(pwd) == requiredLen">
+                <then>
+                    <assign variable="valid" expression="true"/>
+                </then>
+                <else>
+                    <assign variable="valid" expression="false"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="PrintRules" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot; 1) O primeiro caracter tem de ser um d&#237;gito. 2) Tem de conter pelo menos um dos seguintes caracteres: #, * ou @&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="RadioactiveMaterial" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="mass, finalMass" type="Real" array="False" size=""/>
+            <output expression="&quot;Inserir massa: &quot;" newline="True"/>
+            <input variable="mass"/>
+            <declare name="time" type="Integer" array="False" size=""/>
+            <assign variable="time" expression="0"/>
+            <assign variable="finalMass" expression="mass"/>
+            <while expression="finalMass&gt;=0.5">
+                <assign variable="finalMass" expression="finalMass/2"/>
+                <assign variable="time" expression="time+50"/>
+            </while>
+            <output expression="&quot;Massa Inicial: &quot;&amp;mass" newline="True"/>
+            <output expression="&quot;Massa Final: &quot;&amp;finalMass" newline="True"/>
+            <declare name="timeStr" type="String" array="False" size=""/>
+            <assign variable="timeStr" expression="ConvertSeconds(time)"/>
+            <output expression="timeStr" newline="True"/>
+        </body>
+    </function>
+    <function name="HasSpecialChar" type="Boolean" variable="valid">
+        <parameters>
+            <parameter name="pwd" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="valid" type="Boolean" array="False" size=""/>
+            <assign variable="valid" expression="false"/>
+            <declare name="i, length" type="Integer" array="False" size=""/>
+            <assign variable="length" expression="Len(pwd)"/>
+            <assign variable="i" expression="0"/>
+            <for variable="i" start="0" end="length - 1" direction="inc" step="1">
+                <if expression="Char(pwd, i) ==&quot;@&quot; || Char(pwd, i) == &quot;*&quot; || Char(pwd, i) == &quot;#&quot;">
+                    <then>
+                        <assign variable="valid" expression="true"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+    <function name="Temperatures" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Registo das temperaturas de uma semana.&quot;" newline="True"/>
+            <declare name="temp" type="Integer" array="True" size="7"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="0"/>
+            <for variable="i" start="0" end="6" direction="inc" step="1">
+                <output expression="&quot;Introduza &quot;&amp;(i+1)&amp; &quot;&#170; temperatura:&quot;" newline="True"/>
+                <input variable="temp[i]"/>
+            </for>
+            <declare name="max, maxDay" type="Integer" array="False" size=""/>
+            <assign variable="max" expression="temp[0]"/>
+            <assign variable="maxDay" expression="0"/>
+            <for variable="i" start="1" end="6" direction="inc" step="1">
+                <if expression="temp[i]&gt;max">
+                    <then>
+                        <assign variable="max" expression="temp[i]"/>
+                        <assign variable="maxDay" expression="i"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <output expression="&quot;O dia da semana mais quente foi &quot; &amp; DaysWeek2(maxDay+1)" newline="True"/>
+        </body>
+    </function>
+    <function name="TripleJump" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="athlete, marks, valid" type="String" array="False" size=""/>
+            <output expression="&quot;Nome do atleta: &quot;" newline="True"/>
+            <input variable="athlete"/>
+            <assign variable="marks" expression="&quot;Resultados-&gt; | &quot;"/>
+            <declare name="jump, max" type="Real" array="False" size=""/>
+            <assign variable="max" expression="0"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="1" end="4" direction="inc" step="1">
+                <output expression="i &amp;&quot;&#186; Salto v&#225;lido? (s/n)&quot;" newline="True"/>
+                <input variable="valid"/>
+                <if expression="valid ==&quot;s&quot;">
+                    <then>
+                        <output expression="&quot;Valor do &quot;&amp; i &amp; &quot;&#186; salto: &quot;" newline="True"/>
+                        <input variable="jump"/>
+                        <assign variable="marks" expression="marks &amp; jump&amp;&quot; | &quot;"/>
+                        <if expression="jump&gt;max">
+                            <then>
+                                <assign variable="max" expression="jump"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </then>
+                    <else>
+                        <assign variable="marks" expression="marks &amp; &quot; X  | &quot;"/>
+                    </else>
+                </if>
+            </for>
+            <output expression="&quot;Atleta: &quot;&amp; athlete" newline="True"/>
+            <output expression="marks" newline="True"/>
+            <output expression="&quot;Melhor salto: &quot;&amp; max" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
